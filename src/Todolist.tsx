@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEventHandler, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {FilteredValuesType} from "./App";
 
 export type TasksType = {
@@ -13,6 +13,7 @@ type PropsType = {
     removeTask: (id: string) => void
     changeFilter: (value: FilteredValuesType) => void
     addTask: (title: string) => void
+    changeTaskStatus: (taskId: string, isDone: boolean) => void
 }
 export const Todolist = (props: PropsType) => {
 
@@ -27,12 +28,16 @@ export const Todolist = (props: PropsType) => {
         }
     }
     const addTask = () => {
+        if (newTaskTitle === '') {
+            return
+        }
         props.addTask(newTaskTitle)
         setNewTaskTitle('')
     }
     const onAllClickHandler = () => props.changeFilter('all')
     const onActiveClickHandler = () => props.changeFilter('active')
     const onCompletedClickHandler = () => props.changeFilter('completed')
+
 
     return <div>
         <h3>{props.title}</h3>
@@ -47,9 +52,14 @@ export const Todolist = (props: PropsType) => {
             {
                 props.tasks.map((t) => {
                     const onRemoveHandler = () => props.removeTask(t.id)
+                    const changeStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
+                        props.changeTaskStatus(t.id, event.currentTarget.checked)
+                    }
                     return <li key={t.id}>
                         <input type="checkbox"
-                               checked={t.isDone}/>
+                               checked={t.isDone}
+                               onChange={changeStatusHandler}
+                        />
                         <span>{t.title}</span>
                         <button onClick={onRemoveHandler}>-
                         </button>
