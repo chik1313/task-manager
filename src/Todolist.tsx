@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 import {FilteredValuesType} from "./App";
 import AddItemForm from "./AddItemForm";
 import UniversalSpan from "./UniversalSpan";
-import {Button, Checkbox, IconButton} from "@mui/material";
+import {Button, Checkbox, IconButton, List, ListItem} from "@mui/material";
 import {Delete} from "@mui/icons-material";
 
 export type TaskType = {
@@ -48,7 +48,7 @@ export const Todolist = (props: PropsType) => {
             </IconButton>
         </h3>
         <AddItemForm addItem={addTask}/>
-        <ul>
+        <List>
             {
                 props.tasks.map((t) => {
                     const onRemoveHandler = () => props.removeTask(t.id, props.todolistId)
@@ -59,7 +59,7 @@ export const Todolist = (props: PropsType) => {
                         props.changeTaskTitle(newTitle,props.todolistId,t.id)
                     }
 
-                    return <li key={t.id} className={t.isDone ? 'is-done' : ''}>
+                    return <ListItem key={t.id} className={t.isDone ? 'is-done' : ''}>
                         <Checkbox color={'success'}
                                checked={t.isDone}
                                onChange={changeStatusHandler}
@@ -68,12 +68,12 @@ export const Todolist = (props: PropsType) => {
                         <IconButton onClick={onRemoveHandler}>
                             <Delete/>
                         </IconButton>
-                    </li>
+                    </ListItem>
                 })
             }
 
 
-        </ul>
+        </List>
         <div>
             <Button onClick={onAllClickHandler}
                     variant={props.filter === 'all' ? 'contained' : 'text'}
