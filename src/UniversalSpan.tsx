@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import {TextField} from "@mui/material";
 
 type UniversalSpanType = {
     title: string
@@ -21,7 +22,7 @@ const UniversalSpan = (props: UniversalSpanType) => {
     }
 
     return editMode
-        ? <input value={title} onChange={onChangeTitleHandler} onBlur={DeactivateEditMode} autoFocus/>
+        ? <TextField variant="standard" value={title} onChange={onChangeTitleHandler} onBlur={DeactivateEditMode} autoFocus/>
         : <span onDoubleClick={ActivateEditMode}>{props.title}</span>
 };
 
