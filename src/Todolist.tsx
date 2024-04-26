@@ -33,7 +33,6 @@ export const Todolist = (props: PropsType) => {
     }
     const addTask = (title: string) => {
         props.addTask(title, props.todolistId)
-        console.log(props.todolistId)
     }
     const changeTodolistTitle = (title: string) => {
         props.changeTodolistTitle(title, props.todolistId)
