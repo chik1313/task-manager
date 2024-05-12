@@ -22,7 +22,7 @@ function App() {
     const todolistId2 = v1();
 
     let [todolists, setTodolists] = useState<TodolistsType[]>([
-        {id: todolistId1, title: "What to learn", filter: "all"},
+        {id: todolistId1, title: "What tso learn", filter: "all"},
         {id: todolistId2, title: "What to buy", filter: "all"},
     ])
 
