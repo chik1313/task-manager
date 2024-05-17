@@ -15,7 +15,7 @@ type TasksType = {
     [key: string]: Array<TaskType>
 }
 export type  FilteredValuesType = "all" | "active" | "completed"
-
+s
 function App() {
 
     const todolistId1 = v1();
