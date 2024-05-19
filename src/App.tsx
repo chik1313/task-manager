@@ -48,7 +48,7 @@ function App() {
         let filterTodolist = todolists.find(tl => tl.id === todolistId)
         if (filterTodolist) {
             filterTodolist.filter = value
-            setTodolists([...todoslists])
+            setTodolists([...todolists])
         }
     }
     const addTask = (title: string, todolistId: string) => {
