@@ -27,7 +27,7 @@ type PropsType = {
 export const Todolist = (props: PropsType) => {
     const onAllClickHandler = () => props.changeFilter('all', props.todolistId)
     const onActiveClickHandler = () => props.changeFilter('active', props.todolistId)
-    const onCompletedClickHandler = () => props.changeFilter('completed', props.todolistId)
+    const onCompletedClickHandler = () => props.changeFilter('compsleted', props.todolistId)
     const removeTodolistHandler = () => {
         props.removeTodolist(props.todolistId)
     }
