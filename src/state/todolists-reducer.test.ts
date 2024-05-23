@@ -14,12 +14,12 @@ test('correct todolist should be removed', () => {
 
     // 2. Действие
     const action = {
-        type: 'REMOVE-TODOLIST',
+        type: 'REMOVE-TODOLIST' as const,
         payload: {
             id: todolistId1,
         },
     }
-    const endState:TodolistsType[] = todolistsReducer(startState, action)
+    const endState = todolistsReducer(startState, action)
 
     // 3. Проверяем, что наши действия (изменения state) соответствуют ожиданию
     // в массиве останется один тудулист
@@ -37,7 +37,7 @@ test('correct todolist should be added', () => {
     ]
 
     const action = {
-        type: 'ADD-TODOLIST',
+        type: 'ADD-TODOLIST' as const,
         payload: {
             title: 'New Todolist',
         },
@@ -57,7 +57,7 @@ test('correct todolist should change its name', () => {
     ]
 
     const action = {
-        type: 'CHANGE-TODOLIST-TITLE',
+        type: 'CHANGE-TODOLIST-TITLE' as const,
         payload: {
             id: todolistId2,
             title: 'New Todolist',
