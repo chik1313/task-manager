@@ -56,4 +56,6 @@ export const todolistsReducer = (state:TodolistsType[] , action: ActionsType) =>
     }
 }
 
-
+export const AddTodolistAC = (title:string,) : AddTodolistActionType => {
+    return {type:'ADD-TODOLIST' ,  payload:{title }}
+}

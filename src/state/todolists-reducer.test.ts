@@ -1,6 +1,7 @@
-import { todolistsReducer } from './todolists-reducer'
+import {AddTodolistAC, todolistsReducer} from './todolists-reducer'
 import { v1 } from 'uuid'
-import { TodolistsType } from '../App'
+import {TasksType, TodolistsType} from '../App'
+import {tasksReducer} from "./tasks-reducer";
 
 test('correct todolist should be removed', () => {
     let todolistId1 = v1()
@@ -40,6 +41,7 @@ test('correct todolist should be added', () => {
         type: 'ADD-TODOLIST' as const,
         payload: {
             title: 'New Todolist',
+
         },
     }
     const endState = todolistsReducer(startState, action)
