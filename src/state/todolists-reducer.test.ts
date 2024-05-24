@@ -1,7 +1,6 @@
-import {AddTodolistAC, todolistsReducer} from './todolists-reducer'
-import { v1 } from 'uuid'
-import {TasksType, TodolistsType} from '../App'
-import {tasksReducer} from "./tasks-reducer";
+import {addTodolistAC, todolistsReducer} from './todolists-reducer'
+import {v1} from 'uuid'
+import {TodolistsType} from '../App'
 
 test('correct todolist should be removed', () => {
     let todolistId1 = v1()
@@ -9,15 +8,15 @@ test('correct todolist should be removed', () => {
 
     // 1. Стартовый state
     const startState: TodolistsType[] = [
-        { id: todolistId1, title: 'What to learn', filter: 'all' },
-        { id: todolistId2, title: 'What to buy', filter: 'all' },
+        {id: todolistId1, title: 'What to learn', filter: 'all'},
+        {id: todolistId2, title: 'What to buy', filter: 'all'},
     ]
 
     // 2. Действие
     const action = {
         type: 'REMOVE-TODOLIST' as const,
         payload: {
-            id: todolistId1,
+            todolistId: todolistId1,
         },
     }
     const endState = todolistsReducer(startState, action)
@@ -33,17 +32,11 @@ test('correct todolist should be added', () => {
     let todolistId2 = v1()
 
     const startState: TodolistsType[] = [
-        { id: todolistId1, title: 'What to learn', filter: 'all' },
-        { id: todolistId2, title: 'What to buy', filter: 'all' },
+        {id: todolistId1, title: 'What to learn', filter: 'all'},
+        {id: todolistId2, title: 'What to buy', filter: 'all'},
     ]
 
-    const action = {
-        type: 'ADD-TODOLIST' as const,
-        payload: {
-            title: 'New Todolist',
-
-        },
-    }
+    const action = addTodolistAC('New Todolist')
     const endState = todolistsReducer(startState, action)
 
     expect(endState.length).toBe(3)
@@ -54,8 +47,8 @@ test('correct todolist should change its name', () => {
     let todolistId2 = v1()
 
     const startState: TodolistsType[] = [
-        { id: todolistId1, title: 'What to learn', filter: 'all' },
-        { id: todolistId2, title: 'What to buy', filter: 'all' },
+        {id: todolistId1, title: 'What to learn', filter: 'all'},
+        {id: todolistId2, title: 'What to buy', filter: 'all'},
     ]
 
     const action = {
