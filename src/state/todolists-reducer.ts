@@ -1,10 +1,10 @@
 import {FilteredValuesType, TodolistsType} from "../App";
 import {v1} from "uuid";
 
-export type AddTodolistActionType = {
+export type addTodolistActionType = {
     type: 'ADD-TODOLIST'
     payload: {
-        title:string
+        title: string
         todolistId: string
     }
 }
@@ -12,7 +12,7 @@ export type AddTodolistActionType = {
 export type ChangeTodolistTitleActionType = {
     type: 'CHANGE-TODOLIST-TITLE'
     payload: {
-        id: string
+        todolistId: string
         title: string
     }
 }
@@ -32,32 +32,45 @@ export type removeTodolistActionType = {
 }
 
 type ActionsType =
-    | AddTodolistActionType
+    | addTodolistActionType
     | ChangeTodolistTitleActionType
     | ChangeTodolistFilterActionType
     | removeTodolistActionType
 
 
-export const todolistsReducer = (state: TodolistsType[], action: ActionsType) => {
+export const todolistsReducer = (state: TodolistsType[], action: ActionsType): TodolistsType[] => {
     switch (action.type) {
         case 'REMOVE-TODOLIST': {
-            return state.filter(tl => tl.id != action.payload.todolistId)
+            return state.filter(tl => tl.id !== action.payload.todolistId)
         }
         case 'ADD-TODOLIST': {
-            return [...state, {id: action.payload.todolistId, title: action.payload.title, filter: 'all'}]
+            return [{id: action.payload.todolistId, title: action.payload.title, filter: 'all'}, ...state]
 
         }
         case 'CHANGE-TODOLIST-TITLE': {
-            return state.map(tl => (tl.id === action.payload.id ? {...tl, title: action.payload.title} : tl))
+            return state.map(tl => (tl.id === action.payload.todolistId ? {...tl, title: action.payload.title} : tl))
+        }
+        case "CHANGE-TODOLIST-FILTER": {
+            const todolist = state.find(t => t.id === action.payload.id)
+            if (todolist) {
+                todolist.filter = action.payload.filter
+            }
+            return [...state]
         }
         default:
             throw new Error("I don't understand this action type")
     }
 }
 
-export const addTodolistAC = (title: string): AddTodolistActionType => {
+export const addTodolistAC = (title: string): addTodolistActionType => {
     return {type: 'ADD-TODOLIST', payload: {title, todolistId: v1()}}
 }
 export const removeTodolistAC = (todolistId: string): removeTodolistActionType => {
     return {type: 'REMOVE-TODOLIST', payload: {todolistId}}
+}
+export const changeTodolistTitleAC = (todolistId: string, title: string): ChangeTodolistTitleActionType => {
+    return {type: 'CHANGE-TODOLIST-TITLE', payload: {todolistId, title}}
+}
+export const changeTodolistFilterAC = (id: string, filter: FilteredValuesType): ChangeTodolistFilterActionType => {
+    return {type: 'CHANGE-TODOLIST-FILTER', payload: {id, filter}}
 }

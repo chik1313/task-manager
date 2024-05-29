@@ -40,7 +40,7 @@ test('correct todolist should be added', () => {
     const endState = todolistsReducer(startState, action)
 
     expect(endState.length).toBe(3)
-    expect(endState[2].title).toBe(action.payload.title)
+    expect(endState[0].title).toBe(action.payload.title)
 })
 test('correct todolist should change its name', () => {
     let todolistId1 = v1()
@@ -54,7 +54,7 @@ test('correct todolist should change its name', () => {
     const action = {
         type: 'CHANGE-TODOLIST-TITLE' as const,
         payload: {
-            id: todolistId2,
+            todolistId: todolistId2,
             title: 'New Todolist',
         },
     }
