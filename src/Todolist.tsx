@@ -30,6 +30,14 @@ export const Todolist = (props: PropsType) => {
     const onAllClickHandler = () => props.changeFilter('all', props.todolistId)
     const onActiveClickHandler = () => props.changeFilter('active', props.todolistId)
     const onCompletedClickHandler = () => props.changeFilter('completed', props.todolistId)
+
+    let todolistTasks = tasks;
+    if (props.filter === 'active') {
+        todolistTasks = tasks.filter(t => t.isDone === false)
+    }
+    if (props.filter === 'completed') {
+       todolistTasks = tasks.filter(t => t.isDone === true)
+    }
     const removeTodolistHandler = () => {
         props.removeTodolist(props.todolistId)
     }
@@ -51,7 +59,7 @@ export const Todolist = (props: PropsType) => {
         <AddItemForm addItem={addTask}/>
         <List>
             {
-                tasks.map((t) => {
+                todolistTasks.map((t) => {
                     const onRemoveHandler = () =>
                     dispatch(removeTaskAC(props.todolistId, t.id))
                     const changeStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
