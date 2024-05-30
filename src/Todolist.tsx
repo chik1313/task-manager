@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import {FilteredValuesType} from "./App";
+import {FilteredValuesType} from "./AppWithRedux";
 import AddItemForm from "./AddItemForm";
 import UniversalSpan from "./UniversalSpan";
 import {Button, Checkbox, IconButton, List, ListItem} from "@mui/material";
