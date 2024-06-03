@@ -6,14 +6,16 @@ type AddItemFormType = {
     addItem: (title: string) => void
 }
 
-const AddItemForm = (props: AddItemFormType) => {
+const AddItemForm = React.memo((props: AddItemFormType) => {
     const [error, setError] = useState<string>('')
     const [newTaskTitle, setNewTaskTitle] = useState('')
     const onNewTitleChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setNewTaskTitle(event.currentTarget.value)
-        setError('')
     }
     const AddTaskOnKeyPressEvent = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (!error !== null) {
+            setError('')
+        }
         if (event.charCode === 13) {
             props.addItem(newTaskTitle.trim())
             setNewTaskTitle('')
@@ -42,6 +44,6 @@ const AddItemForm = (props: AddItemFormType) => {
             </IconButton>
         </div>
     );
-};
+});
 
 export default AddItemForm;

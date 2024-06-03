@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useCallback} from "react";
 import {FilteredValuesType} from "./AppWithRedux";
 import AddItemForm from "./AddItemForm";
 import UniversalSpan from "./UniversalSpan";
@@ -22,7 +22,7 @@ type PropsType = {
     removeTodolist: (todolistId: string) => void
     changeTodolistTitle: (title: string, todolistId: string) => void
 }
-export const Todolist = (props: PropsType) => {
+export const Todolist = React.memo((props: PropsType) => {
     const tasks = useSelector<AppRootState, TaskType[]>(state => state.tasks[props.todolistId])
     const dispatch = useDispatch()
 
@@ -41,10 +41,10 @@ export const Todolist = (props: PropsType) => {
     const removeTodolistHandler = () => {
         props.removeTodolist(props.todolistId)
     }
-    const addTask = (title: string) => {
+    const addTask = useCallback((title: string) => {
         const action = addTaskAC(title, props.todolistId)
         dispatch(action)
-    }
+    }, [])
     const changeTodolistTitle = (title: string) => {
         props.changeTodolistTitle(title, props.todolistId)
     }
@@ -104,4 +104,4 @@ export const Todolist = (props: PropsType) => {
             </Button>
         </div>
     </div>
-}
+})

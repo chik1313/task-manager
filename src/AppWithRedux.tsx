@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import "./App.css"
 import {TaskType, Todolist} from "./Todolist";
 import AddItemForm from "./AddItemForm";
@@ -29,23 +29,23 @@ function AppWithRedux() {
     const todolists = useSelector<AppRootState, TodolistsType[]>(state => state.todolists)
     const tasks = useSelector<AppRootState, TasksType>(state => state.tasks)
 
-    const changeFilter = (value: FilteredValuesType, todolistId: string) => {
+    const changeFilter = useCallback((value: FilteredValuesType, todolistId: string) => {
         dispatch(changeTodolistFilterAC(todolistId, value))
-    }
+    },[])
 
-    const changeTodolistTitle = (title: string, todolistId: string) => {
+    const changeTodolistTitle = useCallback((title: string, todolistId: string) => {
         dispatch(changeTodolistTitleAC(todolistId, title))
-    }
-    const removeTodolist = (todolistId: string) => {
+    },[])
+    const removeTodolist = useCallback((todolistId: string) => {
         const action = removeTodolistAC(todolistId)
         dispatch(action)
 
-    }
-    const addTodolist = (title: string) => {
+    },[])
+    const addTodolist = useCallback((title: string) => {
         const action = addTodolistAC(title);
         dispatch(action)
 
-    }
+    }, []);
 
     return (
         <div>
@@ -73,8 +73,7 @@ function AppWithRedux() {
                                         todolistId={tl.id}
                                         title={tl.title}
                                         changeFilter={changeFilter}
-                                        filter={tl.filter}
-                                        changeTodolistTitle={changeTodolistTitle}
+                                        filter={tl.filter} changeTodolistTitle={changeTodolistTitle}
                                     />
                                 </Paper>
                             </Grid>
