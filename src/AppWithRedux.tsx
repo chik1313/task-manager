@@ -49,7 +49,7 @@ function AppWithRedux() {
 
     return (
         <div>
-            <AppBar position="statSic">
+            <AppBar position="static">
                 <Toolbar>
                     <IconButton color="inherit">
                         <MenuIcon/>
