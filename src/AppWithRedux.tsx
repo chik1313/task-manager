@@ -49,7 +49,7 @@ function AppWithRedux() {
 
     return (
         <div>
-            <AppBar position="static">
+            <AppBar position="statSic">
                 <Toolbar>
                     <IconButton color="inherit">
                         <MenuIcon/>
@@ -64,7 +64,6 @@ function AppWithRedux() {
                 <Grid container spacing={4}>
                     {
                         todolists.map((tl) => {
-
                             return <Grid item>
                                 <Paper style={{padding: '10px'}}>
                                     <Todolist
@@ -73,7 +72,8 @@ function AppWithRedux() {
                                         todolistId={tl.id}
                                         title={tl.title}
                                         changeFilter={changeFilter}
-                                        filter={tl.filter} changeTodolistTitle={changeTodolistTitle}
+                                        filter={tl.filter}
+                                        changeTodolistTitle={changeTodolistTitle}
                                     />
                                 </Paper>
                             </Grid>
