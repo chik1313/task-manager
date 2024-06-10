@@ -5,7 +5,7 @@ type UniversalSpanType = {
     title: string
     changeTaskTitleHandler: (newTitle: string) => void
 }
-const UniversalSpan = (props: UniversalSpanType) => {
+const UniversalSpan = React.memo((props: UniversalSpanType) => {
 
     let [editMode, setEditMode] = useState(false)
     let [title, setTitle] = useState('')
@@ -24,6 +24,6 @@ const UniversalSpan = (props: UniversalSpanType) => {
     return editMode
         ? <TextField variant="standard" value={title} onChange={onChangeTitleHandler} onBlur={DeactivateEditMode} autoFocus/>
         : <span onDoubleClick={ActivateEditMode}>{props.title}</span>
-};
+});
 
 export default UniversalSpan;

@@ -1,12 +1,13 @@
-import React, {ChangeEvent, useCallback} from "react";
+import React, {useCallback} from "react";
 import {FilteredValuesType} from "./AppWithRedux";
 import AddItemForm from "./AddItemForm";
 import UniversalSpan from "./UniversalSpan";
-import {Button, Checkbox, IconButton, List, ListItem} from "@mui/material";
+import {Button, IconButton, List} from "@mui/material";
 import {Delete} from "@mui/icons-material";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
+import {addTaskAC} from "./state/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./state/store";
+import Task from "./Task";
 
 export type TaskType = {
     id: string;
@@ -45,9 +46,9 @@ export const Todolist = React.memo((props: PropsType) => {
         const action = addTaskAC(title, props.todolistId)
         dispatch(action)
     }, [props.todolistId])
-    const changeTodolistTitle = (title: string) => {
+    const changeTodolistTitle = useCallback((title: string) => {
         props.changeTodolistTitle(title, props.todolistId)
-    }
+    }, [props.changeTodolistTitle, props.todolistId])
 
 
     return <div>
@@ -59,32 +60,12 @@ export const Todolist = React.memo((props: PropsType) => {
         <AddItemForm addItem={addTask}/>
         <List>
             {
-                todolistTasks.map((t) => {
-                    const onRemoveHandler = () =>
-                        dispatch(removeTaskAC(props.todolistId, t.id))
-                    const changeStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
-                        dispatch(changeTaskStatusAC(t.id,
-                            event.currentTarget.checked,
-                            props.todolistId))
-                    }
-                    const changeTaskTitleHandler = (newTitle: string) => {
-                        dispatch(changeTaskTitleAC(t.id, newTitle, props.todolistId))
-                    }
-
-                    return <ListItem key={t.id} className={t.isDone ? 'is-done' : ''}>
-                        <Checkbox color={'success'}
-                                  checked={t.isDone}
-                                  onChange={changeStatusHandler}
-                        />
-                        <UniversalSpan title={t.title} changeTaskTitleHandler={changeTaskTitleHandler}/>
-                        <IconButton onClick={onRemoveHandler}>
-                            <Delete/>
-                        </IconButton>
-                    </ListItem>
-                })
+                todolistTasks.map((t) => <Task
+                    todolistId={props.todolistId}
+                    task={t}
+                    key={t.id}
+                />)
             }
-
-
         </List>
         <div>
             <Button onClick={onAllClickHandler}
