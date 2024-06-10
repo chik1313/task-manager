@@ -27,16 +27,16 @@ export const Todolist = React.memo((props: PropsType) => {
     const dispatch = useDispatch()
 
 
-    const onAllClickHandler = () => props.changeFilter('all', props.todolistId)
-    const onActiveClickHandler = () => props.changeFilter('active', props.todolistId)
-    const onCompletedClickHandler = () => props.changeFilter('completed', props.todolistId)
+    const onAllClickHandler = useCallback(() => props.changeFilter('all', props.todolistId), [props.changeFilter, props.todolistId])
+    const onActiveClickHandler = useCallback(() => props.changeFilter('active', props.todolistId), [props.changeFilter, props.todolistId])
+    const onCompletedClickHandler = useCallback(() => props.changeFilter('completed', props.todolistId), [props.changeFilter, props.todolistId])
 
     let todolistTasks = tasks;
     if (props.filter === 'active') {
         todolistTasks = tasks.filter(t => t.isDone === false)
     }
     if (props.filter === 'completed') {
-       todolistTasks = tasks.filter(t => t.isDone === true)
+        todolistTasks = tasks.filter(t => t.isDone === true)
     }
     const removeTodolistHandler = () => {
         props.removeTodolist(props.todolistId)
@@ -44,7 +44,7 @@ export const Todolist = React.memo((props: PropsType) => {
     const addTask = useCallback((title: string) => {
         const action = addTaskAC(title, props.todolistId)
         dispatch(action)
-    }, [])
+    }, [props.todolistId])
     const changeTodolistTitle = (title: string) => {
         props.changeTodolistTitle(title, props.todolistId)
     }
@@ -61,7 +61,7 @@ export const Todolist = React.memo((props: PropsType) => {
             {
                 todolistTasks.map((t) => {
                     const onRemoveHandler = () =>
-                    dispatch(removeTaskAC(props.todolistId, t.id))
+                        dispatch(removeTaskAC(props.todolistId, t.id))
                     const changeStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
                         dispatch(changeTaskStatusAC(t.id,
                             event.currentTarget.checked,
