@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useCallback} from 'react';
 import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
 import {Checkbox, IconButton, ListItem} from "@mui/material";
 import UniversalSpan from "./UniversalSpan";
@@ -8,10 +8,10 @@ import {useDispatch} from "react-redux";
 
 type TaskPropsType = {
     todolistId: string
-    task:TaskType
+    task: TaskType
 }
 
-const Task = (props:TaskPropsType) => {
+const Task = React.memo((props: TaskPropsType) => {
     const dispatch = useDispatch()
     const onRemoveHandler = () =>
         dispatch(removeTaskAC(props.todolistId, props.task.id))
@@ -20,9 +20,9 @@ const Task = (props:TaskPropsType) => {
             event.currentTarget.checked,
             props.todolistId))
     }
-    const changeTaskTitleHandler = (newTitle: string) => {
+    const changeTaskTitleHandler = useCallback((newTitle: string) => {
         dispatch(changeTaskTitleAC(props.task.id, newTitle, props.todolistId))
-    }
+    }, [props.todolistId, props.task.id])
 
     return <ListItem key={props.task.id} className={props.task.isDone ? 'is-done' : ''}>
         <Checkbox color={'success'}
@@ -34,6 +34,6 @@ const Task = (props:TaskPropsType) => {
             <Delete/>
         </IconButton>
     </ListItem>
-};
+});
 
 export default Task;
