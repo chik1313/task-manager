@@ -22,7 +22,7 @@ const Task = React.memo((props: TaskPropsType) => {
     }
     const changeTaskTitleHandler = useCallback((newTitle: string) => {
         dispatch(changeTaskTitleAC(props.task.id, newTitle, props.todolistId))
-    }, [props.todolistId, props.task.id])
+    }, [props.todolistId, props.task.ids])
 
     return <ListItem key={props.task.id} className={props.task.isDone ? 'is-done' : ''}>
         <Checkbox color={'success'}
