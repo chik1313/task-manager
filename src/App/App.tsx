@@ -16,15 +16,28 @@ export type TasksType = {
 }
 export type  FilteredValuesType = "all" | "active" | "completed"
 
-function App() {
-
-    const todolistId1 = v1();
-    const todolistId2 = v1();
-
+const todolistId1 = v1();
+const todolistId2 = v1();
+const useTodolists = () => {
     let [todolists, setTodolists] = useState<TodolistsType[]>([
         {id: todolistId1, title: "What to learn", filter: "all"},
         {id: todolistId2, title: "What to buy", filter: "all"},
     ])
+    return [todolists, setTodolists] as const
+}
+const useTasks = () => {
+
+}
+
+function App() {
+
+    let [todolists, setTodolists] = useTodolists()
+
+
+  /*  let [todolists, setTodolists] = useState<TodolistsType[]>([
+        {id: todolistId1, title: "What to learn", filter: "all"},
+        {id: todolistId2, title: "What to buy", filter: "all"},
+    ])*/
 
     let [tasks, setTasks] = useState<TasksType>({
         [todolistId1]: [
