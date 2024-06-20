@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import "../App.css"
 import {TaskType, Todolist} from "../Todolist";
 import {v1} from "uuid";
-import AddItemForm from "../AddItemForm";
+import AddItemForm from "../AddItemForm/AddItemForm";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu'
 
@@ -16,28 +16,15 @@ export type TasksType = {
 }
 export type  FilteredValuesType = "all" | "active" | "completed"
 
-const todolistId1 = v1();
-const todolistId2 = v1();
-const useTodolists = () => {
+function App() {
+
+    const todolistId1 = v1();
+    const todolistId2 = v1();
+
     let [todolists, setTodolists] = useState<TodolistsType[]>([
         {id: todolistId1, title: "What to learn", filter: "all"},
         {id: todolistId2, title: "What to buy", filter: "all"},
     ])
-    return [todolists, setTodolists] as const
-}
-const useTasks = () => {
-
-}
-
-function App() {
-
-    let [todolists, setTodolists] = useTodolists()
-
-
-  /*  let [todolists, setTodolists] = useState<TodolistsType[]>([
-        {id: todolistId1, title: "What to learn", filter: "all"},
-        {id: todolistId2, title: "What to buy", filter: "all"},
-    ])*/
 
     let [tasks, setTasks] = useState<TasksType>({
         [todolistId1]: [
