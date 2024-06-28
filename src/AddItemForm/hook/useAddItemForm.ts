@@ -12,7 +12,7 @@ export const useAddItemForm = (onAddItem:(title: string) => void) => {
         }
         if (event.charCode === 13) {
             onAddItem(newTaskTitle.trim())
-            setNewTaskTitle('ыыыы')
+            setNewTaskTitle('')
         }
     }
     const addTaskOnClick = () => {
