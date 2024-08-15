@@ -8,7 +8,7 @@ type removeTaskAcType = {
     taskId: string
 }
 type changeTasksStatusAcType = {
-    type: "CHANGE-TASK-STATUS",
+    type: "CHANGE-TASK-STATS",
     isDone: boolean,
     taskId: string,
     todolistId: string
