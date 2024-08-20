@@ -15,7 +15,7 @@ type changeTasksStatusAcType = {
 }
 
 type changeTasksTitleAcType = {
-    type: "CHANGE-TASK-TITLxE"
+    type: "CHANGE-TASK-TITLE"
     taskId: string
     title: string
     todolistId: string
