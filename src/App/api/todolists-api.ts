@@ -20,6 +20,25 @@ type ResponseType<D> = {
     item: D
 }
 
+type TaskType = {
+    id: string,
+    title: string,
+    description: string | null,
+    todoListId: string,
+    order: number,
+    status: number,
+    priority: number,
+    startDate: string | null,
+    deadline: string | null,
+    addedDate: string
+}
+
+type GetTaskResponse = {
+    items: TaskType[],
+    totalCount: number,
+    error: string | null
+}
+
 export const todolistsApi = {
     getTodolists() {
         const promise = axios.get<Array<TodolistsType>>('https://social-network.samuraijs.com/api/1.1/todo-lists', settings)
