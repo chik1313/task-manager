@@ -8,7 +8,6 @@ export type addTodolistActionType = {
         todolistId: string
     }
 }
-
 export type ChangeTodolistTitleActionType = {
     type: 'CHANGE-TODOLIST-TITLE'
     payload: {
@@ -16,7 +15,6 @@ export type ChangeTodolistTitleActionType = {
         title: string
     }
 }
-
 export type ChangeTodolistFilterActionType = {
     type: 'CHANGE-TODOLIST-FILTER'
     payload: {
@@ -30,7 +28,10 @@ export type removeTodolistActionType = {
         todolistId: string
     }
 }
-
+export type  FilteredValuesType = "all" | "active" | "completed"
+export type TodolistsDomainType  = TodolistsType & {
+filter:FilteredValuesType
+}
 type ActionsType =
     | addTodolistActionType
     | ChangeTodolistTitleActionType

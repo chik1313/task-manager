@@ -25,7 +25,7 @@ type ResponseType<D = {} > = {
     item: D
 }
 
-type TaskType = {
+export type TaskType = {
     description: string
     title: string
     status: number

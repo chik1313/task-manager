@@ -1,16 +1,12 @@
 import React, {useState} from 'react';
 import "../App.css"
-import {TaskType, Todolist} from "../Todolist";
 import {v1} from "uuid";
 import AddItemForm from "../AddItemForm/AddItemForm";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu'
+import {TaskType, TodolistsType} from "./api/todolists-api";
 
-export type  TodolistsType = {
-    id: string,
-    title: string,
-    filter: FilteredValuesType
-}
+
 export type TasksType = {
     [key: string]: Array<TaskType>
 }

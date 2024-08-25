@@ -8,12 +8,7 @@ import {addTaskAC} from "./state/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./state/store";
 import Task from "./Task";
-
-export type TaskType = {
-    id: string;
-    title: string;
-    isDone: boolean;
-}
+import {TaskType} from "./App/api/todolists-api";
 
 type PropsType = {
     title: string,
