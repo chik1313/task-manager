@@ -34,7 +34,7 @@ filter:FilteredValuesType
 }
 type ActionsType =
     | addTodolistActionType
-    | ChangeTodolistTitleActionType
+    | ChangeTodolistTitleActionчType
     | ChangeTodolistFilterActionType
     | removeTodolistActionType
 
