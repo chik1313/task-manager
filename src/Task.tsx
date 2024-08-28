@@ -3,8 +3,8 @@ import {changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks
 import {Checkbox, IconButton, ListItem} from "@mui/material";
 import UniversalSpan from "./UniversalSpan";
 import {Delete} from "@mui/icons-material";
-import {TaskType} from "./Todolist";
 import {useDispatch} from "react-redux";
+import {TaskType} from "./App/api/todolists-api";
 
 type TaskPropsType = {
     todolistId: string
