@@ -1,5 +1,6 @@
-import {FilteredValuesType, TodolistsType} from "../AppWithRedux";
+
 import {v1} from "uuid";
+import {TodolistsType} from "../App/api/todolists-api";
 
 export type addTodolistActionType = {
     type: 'ADD-TODOLIST'
@@ -29,8 +30,9 @@ export type removeTodolistActionType = {
     }
 }
 export type  FilteredValuesType = "all" | "active" | "completed"
-export type TodolistsDomainType  = TodolistsType & {
-filter:FilteredValuesType
+
+export type TodolistsDomainType = TodolistsType & {
+    filter: FilteredValuesType
 }
 type ActionsType =
     | addTodolistActionType
@@ -38,21 +40,21 @@ type ActionsType =
     | ChangeTodolistFilterActionType
     | removeTodolistActionType
 
-export  const todolistId1 = v1();
+export const todolistId1 = v1();
 export const todolistId2 = v1();
 
-const initialState: TodolistsType[] = [
-    {id: todolistId1, title: "What to learn", filter: "all"},
-    {id: todolistId2, title: "What to buy", filter: "all"}
+const initialState: TodolistsDomainType[] = [
+    /*    {id: todolistId1, title: "What to learn", filter: "all"},
+        {id: todolistId2, title: "What to buy", filter: "all"}*/
 ]
 
-export const todolistsReducer = (state: TodolistsType[] = initialState, action: ActionsType): TodolistsType[] => {
+export const todolistsReducer = (state: TodolistsDomainType[] = initialState, action: ActionsType): TodolistsDomainType[] => {
     switch (action.type) {
         case 'REMOVE-TODOLIST': {
             return state.filter(tl => tl.id !== action.payload.todolistId)
         }
         case 'ADD-TODOLIST': {
-            return [ {id: action.payload.todolistId, title: action.payload.title, filter: 'all'},...state]
+            return [{id: action.payload.todolistId, title: action.payload.title, filter: 'all' , addedDate: '' , order: 0}, ...state]
         }
         case 'CHANGE-TODOLIST-TITLE': {
             return state.map(tl => (tl.id === action.payload.todolistId ? {...tl, title: action.payload.title} : tl))
@@ -65,7 +67,7 @@ export const todolistsReducer = (state: TodolistsType[] = initialState, action: 
             return [...state]
         }
         default:
-           return state
+            return state
     }
 }
 

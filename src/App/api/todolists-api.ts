@@ -24,12 +24,26 @@ type ResponseType<D = {} > = {
     messages: Array<string>,
     item: D
 }
+export enum TaskStatuses  {
+    New = 0,
+    InProgress = 1,
+    Completed = 2,
+    Draft = 3
+}
+
+export enum TaskPriorities {
+    Low = 0,
+    Middle = 1,
+    Hi ,
+    Ugrently,
+    Later
+}
 
 export type TaskType = {
     description: string
     title: string
-    status: number
-    priority: number
+    status: TaskStatuses
+    priority: TaskPriorities
     startDate: string
     deadline: string
     id: string

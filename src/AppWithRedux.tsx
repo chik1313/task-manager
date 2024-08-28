@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import {
     addTodolistAC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC,
+    changeTodolistTitleAC, FilteredValuesType,
     removeTodolistAC
 } from "./state/todolists-reducer";
 import {useDispatch, useSelector} from "react-redux";
