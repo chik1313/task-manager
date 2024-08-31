@@ -14,7 +14,7 @@ type TaskPropsType = {
 const Task = React.memo((props: TaskPropsType) => {
     const dispatch = useDispatch()
     const onRemoveHandler = () =>
-        dispatch(removesTaskAC(props.todolistId, props.task.id))
+        dispatch(removeTaskAC(props.todolistId, props.task.id))
     const changeStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
         dispatch(changeTaskStatusAC(props.task.id,
             event.currentTarget.checked,
