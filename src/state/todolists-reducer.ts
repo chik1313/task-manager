@@ -29,6 +29,10 @@ export type removeTodolistActionType = {
         todolistId: string
     }
 }
+export type setTodolistsActionType = {
+    type: 'SET-TODOLISTS'
+    todolists: TodolistsType[]
+}
 export type  FilteredValuesType = "all" | "active" | "completed"
 
 export type TodolistsDomainType = TodolistsType & {
@@ -39,6 +43,7 @@ type ActionsType =
     | ChangeTodolistTitleActionType
     | ChangeTodolistFilterActionType
     | removeTodolistActionType
+| setTodolistsActionType
 
 export const todolistId1 = v1();
 export const todolistId2 = v1();
@@ -66,6 +71,11 @@ export const todolistsReducer = (state: TodolistsDomainType[] = initialState, ac
             }
             return [...state]
         }
+        case "SET-TODOLISTS": {
+            return action.todolists.map( tl => {
+                return {...tl , filter: 'all'}
+                })
+        }
         default:
             return state
     }
@@ -82,4 +92,7 @@ export const changeTodolistTitleAC = (todolistId: string, title: string): Change
 }
 export const changeTodolistFilterAC = (id: string, filter: FilteredValuesType): ChangeTodolistFilterActionType => {
     return {type: 'CHANGE-TODOLIST-FILTER', payload: {id, filter}}
+}
+export const setTodolistsAC = (todolists:TodolistsType[]): setTodolistsActionType => {
+    return {type: 'SET-TODOLISTS' , todolists}
 }
