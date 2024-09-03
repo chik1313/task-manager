@@ -1,4 +1,3 @@
-
 import {v1} from "uuid";
 import {TodolistsType} from "../App/api/todolists-api";
 
@@ -43,7 +42,7 @@ type ActionsType =
     | ChangeTodolistTitleActionType
     | ChangeTodolistFilterActionType
     | removeTodolistActionType
-| setTodolistsActionType
+    | setTodolistsActionType
 
 export const todolistId1 = v1();
 export const todolistId2 = v1();
@@ -59,7 +58,13 @@ export const todolistsReducer = (state: TodolistsDomainType[] = initialState, ac
             return state.filter(tl => tl.id !== action.payload.todolistId)
         }
         case 'ADD-TODOLIST': {
-            return [{id: action.payload.todolistId, title: action.payload.title, filter: 'all' , addedDate: '' , order: 0}, ...state]
+            return [{
+                id: action.payload.todolistId,
+                title: action.payload.title,
+                filter: 'all',
+                addedDate: '',
+                order: 0
+            }, ...state]
         }
         case 'CHANGE-TODOLIST-TITLE': {
             return state.map(tl => (tl.id === action.payload.todolistId ? {...tl, title: action.payload.title} : tl))
@@ -72,9 +77,9 @@ export const todolistsReducer = (state: TodolistsDomainType[] = initialState, ac
             return [...state]
         }
         case "SET-TODOLISTS": {
-            return action.todolists.map( tl => {
-                return {...tl , filter: 'all'}
-                })
+            return action.todolists.map(tl => {
+                return {...tl, filter: 'all'}
+            })
         }
         default:
             return state
@@ -93,6 +98,6 @@ export const changeTodolistTitleAC = (todolistId: string, title: string): Change
 export const changeTodolistFilterAC = (id: string, filter: FilteredValuesType): ChangeTodolistFilterActionType => {
     return {type: 'CHANGE-TODOLIST-FILTER', payload: {id, filter}}
 }
-export const setTodolistsAC = (todolists:TodolistsType[]): setTodolistsActionType => {
-    return {type: 'SET-TODOLISTS' , todolists}
+export const setTodolistsAC = (todolists: TodolistsType[]): setTodolistsActionType => {
+    return {type: 'SET-TODOLISTS', todolists}
 }
