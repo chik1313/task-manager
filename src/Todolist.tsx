@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import {FilteredValuesType} from "./AppWithRedux";
+
 import AddItemForm from "./AddItemForm/AddItemForm";
 import UniversalSpan from "./UniversalSpan";
 import {Button, IconButton, List} from "@mui/material";
@@ -8,7 +8,8 @@ import {addTaskAC} from "./state/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./state/store";
 import Task from "./Task";
-import {TaskType} from "./App/api/todolists-api";
+import {TaskStatuses, TaskType} from "./App/api/todolists-api";
+import {FilteredValuesType} from "./state/todolists-reducer";
 
 type PropsType = {
     title: string,
@@ -29,10 +30,11 @@ export const Todolist = React.memo((props: PropsType) => {
 
     let todolistTasks = tasks;
     if (props.filter === 'active') {
-        todolistTasks = tasks.filter(t => t.isDone === false)
+        todolistTasks = tasks.filter(t => t.status === TaskStatuses.New
+        )
     }
     if (props.filter === 'completed') {
-        todolistTasks = tasks.filter(t => t.isDone === true)
+        todolistTasks = tasks.filter(t => t.status === TaskStatuses.Completed)
     }
     const removeTodolistHandler = () => {
         props.removeTodolist(props.todolistId)

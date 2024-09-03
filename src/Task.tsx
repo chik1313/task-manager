@@ -4,7 +4,7 @@ import {Checkbox, IconButton, ListItem} from "@mui/material";
 import UniversalSpan from "./UniversalSpan";
 import {Delete} from "@mui/icons-material";
 import {useDispatch} from "react-redux";
-import {TaskType} from "./App/api/todolists-api";
+import {TaskStatuses, TaskType} from "./App/api/todolists-api";
 
 type TaskPropsType = {
     todolistId: string
@@ -13,8 +13,10 @@ type TaskPropsType = {
 
 const Task = React.memo((props: TaskPropsType) => {
     const dispatch = useDispatch()
+
     const onRemoveHandler = () =>
         dispatch(removeTaskAC(props.todolistId, props.task.id))
+
     const changeStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
         dispatch(changeTaskStatusAC(props.task.id,
             event.currentTarget.checked,
@@ -24,9 +26,9 @@ const Task = React.memo((props: TaskPropsType) => {
         dispatch(changeTaskTitleAC(props.task.id, newTitle, props.todolistId))
     }, [props.todolistId, props.task.id])
 
-    return <ListItem key={props.task.id} className={props.task.isDone ? 'is-done' : ''}>
+    return <ListItem key={props.task.id} className={props.task.status ===  TaskStatuses.Completed ? 'is-done' : ''}>
         <Checkbox color={'success'}
-                  checked={props.task.isDone}
+                  checked={props.task.status ===  TaskStatuses.Completed}
                   onChange={changeStatusHandler}
         />
         <UniversalSpan title={props.task.title} changeTaskTitleHandler={changeTaskTitleHandler}/>
