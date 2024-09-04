@@ -608,7 +608,7 @@ test('correct task should be deleted from correct array', () => {
         const endState = tasksReducer(startState, action)
 
 
-        const keys = Object.keys(endState)
+        const keys = Object.keys(endStsate)
 
         expect(keys.length).toBe(1)
         expect(endState['todolistId2']).not.toBeDefined()
