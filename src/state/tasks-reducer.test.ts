@@ -603,7 +603,7 @@ test('correct task should be deleted from correct array', () => {
             ]
         }
 
-        const action = removeTodolistAC('todolistId2')
+        const action = removeTodolistAC('todolisjtId2')
 
         const endState = tasksReducer(startState, action)
 
