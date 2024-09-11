@@ -60,6 +60,6 @@ test('correct todolist should change its name', () => {
     }
     const endState = todolistsReducer(startState, action)
 
-    expect(endState[0].title).toBe('Wdhat to learn')
+    expect(endState[0].title).toBe('What to learn')
     expect(endState[1].title).toBe(action.payload.title)
 })
