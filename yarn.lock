@@ -11983,6 +11983,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"redux-thunk@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "redux-thunk@npm:3.1.0"
+  peerDependencies:
+    redux: ^5.0.0
+  checksum: bea96f8233975aad4c9f24ca1ffd08ac7ec91eaefc26e7ba9935544dc55d7f09ba2aa726676dab53dc79d0c91e8071f9729cddfea927f4c41839757d2ade0f50
+  languageName: node
+  linkType: hard
+
 "redux@npm:^4.0.0":
   version: 4.2.1
   resolution: "redux@npm:4.2.1"
@@ -13473,6 +13482,7 @@ __metadata:
     react-redux: ^9.1.2
     react-scripts: 5.0.1
     redux: ^5.0.1
+    redux-thunk: ^3.1.0
     styled-components: ^6.1.8
     typescript: ^4.4.2
     uuid: ^9.0.1
