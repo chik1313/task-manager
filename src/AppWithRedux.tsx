@@ -13,6 +13,8 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./state/store";
 import {TaskType, todolistsApi} from "./App/api/todolists-api";
+import { ThunkDispatch } from 'redux-thunk';
+import {AnyAction} from "redux";
 
 export type TasksType = {
     [key: string]: Array<TaskType>
@@ -20,7 +22,7 @@ export type TasksType = {
 
 function AppWithRedux() {
 
-    const dispatch = useDispatch()
+    const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
     const todolists = useSelector<AppRootState, TodolistsDomainType[]>(state => state.todolists)
     const tasks = useSelector<AppRootState, TasksType>(state => state.tasks)
 
