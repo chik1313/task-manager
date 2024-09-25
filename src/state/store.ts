@@ -6,7 +6,7 @@ import {thunk} from "redux-thunk";
 
 const rootReducer = combineReducers({
     todolists:todolistsReducer,
-    tasks:tasksReducersss
+    tasks:tasksReducer
 })
 
 export type AppRootState = ReturnType<typeof rootReducer>
