@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
 })
 
 export type AppRootState = ReturnType<typeof rootReducer>
-www
+
 export const store = createStore(rootReducer, applyMiddleware(thunk) )
 
 // @ts-ignore
