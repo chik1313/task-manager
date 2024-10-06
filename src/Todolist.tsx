@@ -22,6 +22,7 @@ type PropsType = {
 export const Todolist = React.memo((props: PropsType) => {
     const tasks = useSelector<AppRootState, TaskType[]>(state => state.tasks[props.todolistId])
     const dispatch = useDispatch()
+    console.log(tasks)
 
 
     const onAllClickHandler = useCallback(() => props.changeFilter('all', props.todolistId), [props.changeFilter, props.todolistId])

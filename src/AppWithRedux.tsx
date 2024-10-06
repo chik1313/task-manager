@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import {
     addTodolistAC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC, FilteredValuesType,
+    changeTodolistTitleAC, fetchTodolistsThunk, FilteredValuesType,
     removeTodolistAC, setTodolistsAC, TodolistsDomainType
 } from "./state/todolists-reducer";
 import {useDispatch, useSelector} from "react-redux";
@@ -27,12 +27,13 @@ function AppWithRedux() {
     const tasks = useSelector<AppRootState, TasksType>(state => state.tasks)
 
     useEffect(() => {
-        todolistsApi.getTodolists()
-            .then( res => {
-                const action = setTodolistsAC(res.data)
-                dispatch(action)
-            })
-    })
+        // todolistsApi.getTodolists()
+        //     .then( res => {
+        //         const action = setTodolistsAC(res.data)
+        //         dispatch(action)
+        //     })
+        dispatch(fetchTodolistsThunk)
+    },[])
 
     const changeFilter = useCallback((value: FilteredValuesType, todolistId: string) => {
         dispatch(changeTodolistFilterAC(todolistId, value))

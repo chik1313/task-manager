@@ -8,7 +8,7 @@ import {TaskStatuses, TaskType} from "./App/api/todolists-api";
 
 type TaskPropsType = {
     todolistId: string
-    task: TaskType
+    task: any
 }
 
 const Task = React.memo((props: TaskPropsType) => {
@@ -28,7 +28,7 @@ const Task = React.memo((props: TaskPropsType) => {
 
     return <ListItem key={props.task.id} className={props.task.status ===  TaskStatuses.Completed ? 'is-done' : ''}>
         <Checkbox color={'success'}
-                  checked={props.task.status ===  TaskStatuses.Completed}
+                  checked={props.task.isDone}
                   onChange={changeStatusHandler}
         />
         <UniversalSpan title={props.task.title} changeTaskTitleHandler={changeTaskTitleHandler}/>
