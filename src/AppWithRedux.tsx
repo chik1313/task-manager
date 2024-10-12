@@ -30,7 +30,7 @@ function AppWithRedux() {
 
     useEffect(() => {
         dispatch(fetchTodolistsTC())
-    },[])
+    },[])sssssss
 
     const changeFilter = useCallback((value: FilteredValuesType, todolistId: string) => {
         dispatch(changeTodolistFilterAC(todolistId, value))
