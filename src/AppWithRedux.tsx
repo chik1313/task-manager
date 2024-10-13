@@ -18,7 +18,7 @@ import {TaskType} from "./App/api/todolists-api";
 import {ThunkDispatch} from 'redux-thunk';
 import {AnyAction} from "redux";
 
-export type TasksType = {
+export type TasksType = {sss
     [key: string]: Array<TaskType>
 }
 
@@ -30,7 +30,7 @@ function AppWithRedux() {
 
     useEffect(() => {
         dispatch(fetchTodolistsTC())
-    },[])sssssss
+    },[])
 
     const changeFilter = useCallback((value: FilteredValuesType, todolistId: string) => {
         dispatch(changeTodolistFilterAC(todolistId, value))
