@@ -18,7 +18,7 @@ import {TaskType} from "./App/api/todolists-api";
 import {ThunkDispatch} from 'redux-thunk';
 import {AnyAction} from "redux";
 
-export type TasksType = {sss
+export type TasksType = {
     [key: string]: Array<TaskType>
 }
 
