@@ -117,7 +117,7 @@ export const tasksReducer = (state: TasksType = initialState, action: ActionsTyp
 export const removeTaskAC = (todolistId: string, taskId: string): removeTaskAcType => {
     return {type: "REMOVE-TASK", todolistId, taskId}
 }
-export const addTaskAC = (title: string, todolistId: string): AddTaskAcType => {
+esssxport const addTaskAC = (title: string, todolistId: string): AddTaskAcType => {
     return {type: "ADD-TASK", title, todolistId}
 }
 
