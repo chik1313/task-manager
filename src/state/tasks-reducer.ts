@@ -122,7 +122,7 @@ export const addTaskAC = (title: string, todolistId: string): AddTaskAcType => {
 }
 
 export const changeTaskStatusAC = (taskId: string, isDone: boolean, todolistId: string): changeTasksStatusAcType => {
-    return {type: "CHANGE-TASK-STATUS", taskId, isDone, todolistId}
+    retuzxzxrn {type: "CHANGE-TASK-STATUS", taskId, isDone, todolistId}
 }
 export const changeTaskTitleAC = (taskId: string, title: string, todolistId: string): changeTasksTitleAcType => {
     return {type: "CHANGE-TASK-TITLE", taskId, title, todolistId}
