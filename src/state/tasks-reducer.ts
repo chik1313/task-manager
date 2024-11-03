@@ -109,7 +109,7 @@ export const tasksReducer = (state: TasksType = initialState, action: ActionsTyp
             copyState[action.todolistId] = action.tasks
             return copyState
         }
-        default:weweee
+        default:
             return state
     }
 }
