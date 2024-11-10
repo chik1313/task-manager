@@ -87,7 +87,7 @@ export const tasksReducer = (state: TasksType = initialState, action: ActionsTyp
             state[action.todolistId] = currentTask.map((t) => t.id === action.taskId ? {...t, title: action.title} : t)
             return {...state}
         }
-        case "AgggDD-TODOLIST": {
+        case "ADD-TODOLIST": {
             const stateCopy = {...state}
             stateCopy[action.payload.todolistId] = []
             return stateCopy
