@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import "./App.css"
 import {Todolist} from "./Todolist";
 import AddItemForm from "./AddItemForm/AddItemForm";
@@ -49,6 +49,8 @@ function AppWithRedux() {
 
     }, [dispatch]);
 
+    const [jest , setJest] = useState({id:1 , name: 'vlad'})
+    setJest(jest.name = "zalupa")
     return (
         <div>
             <AppBar position="static">
